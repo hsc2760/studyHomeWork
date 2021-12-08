@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ES6基础第一次作业——贺栓财</title>
+</head>
+
+<body>
+
+  <h4>作业1：实现一个函数，将现有数组内每个对象的checked属性去掉</h4>
+  <pre>
+    let arr1 = [
+      { featureId: 1, featureContent: '全新未用', checked: '0' },
+      { featureId: 2, featureContent: '验货面付', checked: '0' },
+      { featureId: 3, featureContent: '快递包邮', checked: '0' },
+      { featureId: 4, featureContent: '保修期内', checked: '0' },
+      { featureId: 5, featureContent: '专柜正品', checked: '0' },
+      { featureId: 6, featureContent: '有发票', checked: '0' }
+    ];
+
+    结果如下：
+    let arr = [
+    {featureId: 1, featureContent: '全新未用'},
+    {featureId: 2, featureContent: '验货面付'},
+    {featureId: 3, featureContent: '快递包邮'},
+    {featureId: 4, featureContent: '保修期内'},
+    {featureId: 5, featureContent: '专柜正品'},
+    {featureId: 6, featureContent: '有发票'}
+    ];
+  </pre>
+  
+<h4>
+  作业2：实现一个函数，传入一个array，返回去除了重复元素的新array。例如：[1,1,2,2,3,4,5,6,1,3,6,7]
+</h4>
+  
+<h4>
+  作业3：实现一个函数，传入下列设对象，要求输出工资最高的人的姓名。
+</h4>
+  <pre>
+    let emp = {
+      "John": 100,
+      "Pete": 300,
+      "Mary": 250,
+      "Jame": 450,
+      "kobe": 550
+      }
+  </pre>
+  <h2>结果在控制台查看</h2>
+  <script>
+    // 作业1
+    let arr1 = [
+      { featureId: 1, featureContent: '全新未用', checked: '0' },
+      { featureId: 2, featureContent: '验货面付', checked: '0' },
+      { featureId: 3, featureContent: '快递包邮', checked: '0' },
+      { featureId: 4, featureContent: '保修期内', checked: '0' },
+      { featureId: 5, featureContent: '专柜正品', checked: '0' },
+      { featureId: 6, featureContent: '有发票', checked: '0' }
+    ];
+    for (let item of arr1) {
+      delete item.checked;
+    }
+    console.log('作业1:\n', arr1);
+    // 作业2
+    let arr2 = [1, 1, 2, 2, 3, 4, 5, 6, 1, 3, 6, 7];
+    function filterArr(arr) {
+      let set = new Set(arr);
+      return Array.from(set);
+    }
+    console.log('\n\n作业2\n', filterArr(arr2));
+    // 作业3
+    let emp = {
+      "John": 100,
+      "Pete": 300,
+      "Mary": 250,
+      "Jame": 450,
+      "kobe": 550
+    };
+    function getHighestSalary(obj) {
+      // 将传入对象处理为方便排序的数据类型
+      let sortedArr = Object.entries(obj);
+      sortedArr = sortedArr.map(item=>{
+        let [name,salary] = item;
+        let newItem = {};
+        newItem.name=name;
+        newItem.salary = salary;
+        return newItem;
+      });
+      // 对得到的数组进行排序
+      sortedArr.sort((a,b)=>b.salary-a.salary);
+      console.log('工资最高的人的姓名是:',sortedArr[0].name,'\n工资为:',sortedArr[0].salary);
+    }
+    
+    console.log('\n\n作业3\n');
+    getHighestSalary(emp);
+
+  </script>
+</body>
+
+</html>
